@@ -1,0 +1,11 @@
+{
+    "name": "phoole/app",
+    "description": "skeleton to build a php app",
+    "keywords": ["php", "swoole", "phoole"],
+    "require": {
+        "php": ">=7.2.0",
+        "psr/http-message": "~1.0",
+        "psr/log": "~1.0",
+        "psr/cache": "~1.0"
+    }
+}
