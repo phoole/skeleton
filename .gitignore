@@ -1,0 +1,8 @@
+# git stuff
+.git
+
+# composer files
+composer.lock
+
+# application related
+.env
