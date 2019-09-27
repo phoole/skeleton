@@ -1,5 +1,6 @@
 {
     "name": "phoole/app",
+    "license": "Apache-2.0",
     "description": "skeleton to build a php app",
     "keywords": ["php", "swoole", "phoole"],
     "require": {
