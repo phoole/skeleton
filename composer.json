@@ -1,14 +1,47 @@
 {
-    "name": "phoole/app",
-    "license": "Apache-2.0",
-    "description": "skeleton to build a php app",
-    "keywords": ["php", "swoole", "phoole"],
-    "require": {
-        "php": "^7.2",
-        "psr/container": "^1.0",
-        "psr/http-factory": "^1.0",
-        "psr/http-message": "^1.0",
-        "psr/http-server-handler": "^1.0",
-        "psr/http-server-middleware": "^1.0"
+  "name": "phoole/skeleton",
+  "type": "project",
+  "license": "Apache-2.0",
+  "description": "skeleton to build a php app",
+  "keywords": [
+    "php",
+    "swoole",
+    "phoole",
+    "framework",
+    "microservice"
+  ],
+  "require": {
+    "php": ">=7.2",
+    "phoole/cache": "1.*",
+    "phoole/env": "1.*",
+    "phoole/config": "1.*",
+    "phoole/di": "1.*",
+    "phoole/event": "1.*",
+    "phoole/logger": "1.*",
+    "phoole/middleware": "1.*",
+    "phoole/route": "1.*",
+    "guzzlehttp/psr7": "1.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+  "provide": {
+    "psr/container-implementation": "1.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/source/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "scripts": {
+    "test": "phpunit",
+    "check": "phpcs --standard=psr12 src/",
+    "format": "phpcbf --standard=psr12 src/"
+  }
 }

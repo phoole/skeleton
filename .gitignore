@@ -1,8 +1,20 @@
-# git stuff
-.git
-
 # composer files
+composer.phar
 composer.lock
+vendor/
 
-# application related
+# phpunit files
+phpunit.phar
+.phpunit*
+
+# editors
+.idea/
+.project
+.DS_Store
+.git/
+.settings/
+.buildpath
+
+# app related
 .env
+runtime/
