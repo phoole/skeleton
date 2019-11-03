@@ -18,4 +18,6 @@ phpunit.phar
 # app related
 .env
 runtime/*
-!runtime/.gitignore
+
+# keep all README files
+!README.md
