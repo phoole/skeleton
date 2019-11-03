@@ -1,29 +1,10 @@
 <?php
 
-use Phoole\Di\Service;
-use Phoole\Di\Container;
+use Psr\Log\LogLevel;
 
 /**
  * Dependency Injection
  */
-
-/**
- * @param  object    $object
- * @param  Container $container
- * @return bool
- */
-$tester = function(object $object, Container $container): bool {
-    return TRUE;
-};
-
-/**
- * @param  object $object
- */
-$logger = function(object $object) {
-    $logger = Service::get('logger');
-    $logger->info("Object " . get_class($object) . " created");
-};
-
 return [
     // all service definitions go here
     'service' => [
@@ -95,7 +76,6 @@ return [
 
     // common methods for each object created in the container
     'common' => [
-        // log object creation in the container
-        [$tester, $logger]
+        ['setLogger', ['${#logger}']]
     ],
 ];
