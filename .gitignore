@@ -18,3 +18,4 @@ phpunit.phar
 # app related
 .env
 runtime/*
+!runtime/.gitignore
