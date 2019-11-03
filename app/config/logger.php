@@ -1,6 +1,5 @@
 <?php
 
-use Psr\Log\LogLevel;
 use Phoole\Logger\Logger;
 use Phoole\Logger\Handler\SyslogHandler;
 
@@ -9,11 +8,6 @@ use Phoole\Logger\Handler\SyslogHandler;
  */
 return [
     'class' => Logger::class,
-
-    // all the handlers
-    'handler.all' => [
-        ['addHandler', ['${#syslog}', LogLevel::WARNING]],
-    ],
 
     // syslog handler
     'handler.syslog.class' => SyslogHandler::class,

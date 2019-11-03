@@ -1,7 +1,7 @@
 <?php
 
-use Phoole\Di\Container;
 use Phoole\Di\Service;
+use Phoole\Di\Container;
 
 /**
  * Dependency Injection
@@ -12,16 +12,14 @@ use Phoole\Di\Service;
  * @param  Container $container
  * @return bool
  */
-$tester = function(object $object, Container $container): bool
-{
-    return true;
+$tester = function(object $object, Container $container): bool {
+    return TRUE;
 };
 
 /**
  * @param  object $object
  */
-$logger = function(object $object)
-{
+$logger = function(object $object) {
     $logger = Service::get('logger');
     $logger->info("Object " . get_class($object) . " created");
 };
@@ -68,17 +66,26 @@ return [
         // middleware
         'middleware' => [
             'class' => '${middleware.queue.class}',
-            'args' => ['${middleware.handler.default}'],
+            'args' => ['${#defaultResponse}'],
             'after' => [
-                ['add', ['${middleware.queue.all}']], // add all middlewares
+                ['add', [ // add middlewares
+                          '${#router}'
+                ]
+                ],
             ],
+        ],
+        'defaultResponse' => [
+            'class' => '${middleware.response.class}',
+            'args' => ['404']
         ],
 
         // logger
         'logger' => [
             'class' => '${logger.class}',
             'args' => [getenv('APP_NAME')], // set log channel to app name
-            'after' => '${logger.handler.all}',     // load all handlers
+            'after' => [
+                ['addHandler', ['${#syslog}', LogLevel::WARNING]],
+            ],
         ],
         'syslog' => [
             'class' => '${logger.handler.syslog.class}',
