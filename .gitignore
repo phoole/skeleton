@@ -17,7 +17,7 @@ phpunit.phar
 
 # app related
 .env
-runtime/*
+local/*
 
 # keep all README files
 !README.md

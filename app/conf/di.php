@@ -27,13 +27,13 @@ return [
             'class' => '${route.resolver.class}',
             'args' => [
                 '${app.controller.namespace}',
-                '${app.controller.suffix}',
-                '${app.controller.action.suffix}'
+                '${route.resolver.controller.suffix}',
+                '${route.resolver.action.suffix}'
             ],
         ],
 
         // event
-        'eventDispatcher' => [
+        'events' => [
             'class' => '${event.dispatcher.class}',
             'args' => ['${#eventProvider}'],
         ],
@@ -49,10 +49,7 @@ return [
             'class' => '${middleware.queue.class}',
             'args' => ['${#defaultResponse}'],
             'after' => [
-                ['add', [ // add middlewares
-                          '${#router}'
-                ]
-                ],
+                ['add', ['${#router}']],
             ],
         ],
         'defaultResponse' => [
@@ -63,7 +60,7 @@ return [
         // logger
         'logger' => [
             'class' => '${logger.class}',
-            'args' => [getenv('APP_NAME')], // set log channel to app name
+            'args' => ['${ENV.APP_NAME}'], // set log channel to app name
             'after' => [
                 ['addHandler', ['${#syslog}', LogLevel::WARNING]],
             ],
@@ -74,8 +71,11 @@ return [
         ],
     ],
 
-    // common methods for each object created in the container
-    'common' => [
-        ['setLogger', ['${#logger}']]
+    // after methods for each object created in the container
+    'after' => [
+        // those ConfigAware
+        ['setConfig', ['${#conf}']],
+        // those loggerAware object will execute this
+        ['setLogger', ['${#logger}']],
     ],
 ];

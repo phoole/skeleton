@@ -9,7 +9,7 @@ return [
     // db writer
     'writer' => [
         'username' => 'phoole',
-        'password' => getenv('DB_PASSWORD'),
+        'password' => '${ENV.DB_PASSWORD}',
         'host' => 'localhost',
         'port' => 3306,
         'database' => 'phoole',
@@ -20,7 +20,7 @@ return [
     // db reader
     'reader' => [
         'username' => 'phoole',
-        'password' => getenv('DB_PASSWORD'),
+        'password' => '${ENV.DB_PASSWORD}',
         'host' => 'localhost',
         'port' => 3306,
         'database' => 'phoole',

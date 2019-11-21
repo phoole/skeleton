@@ -13,6 +13,6 @@ return [
 
     // file adaptor settings
     'file.class' => FileAdaptor::class,
-    'file.dir' => getenv('APP_TEMP_DIR') . \DIRECTORY_SEPARATOR . 'cache',
+    'file.dir' => '${ENV.APP_TEMP_DIR}' . \DIRECTORY_SEPARATOR . 'cache',
     'file.hash.level' => 2,
 ];
